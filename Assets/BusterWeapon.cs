@@ -37,12 +37,12 @@ public class BusterWeapon : MonoBehaviour {
         }
 
 
-        if(Input.GetKeyDown(KeyCode.E) && isEquipped && !anim.GetBool("isRightRunning") && !anim.GetBool("isLeftRunning") && !anim.GetBool("isBackRunning")) {
+        if(Input.GetKeyDown(KeyCode.E) || Input.GetMouseButtonDown(0) && isEquipped && !anim.GetBool("isRightRunning") && !anim.GetBool("isLeftRunning") && !anim.GetBool("isBackRunning")) {
             anim.SetBool("isShooting", true);
             StartCoroutine(Shoot());
 
         }
-        if(Input.GetKeyUp(KeyCode.E)) {
+        if(Input.GetKeyUp(KeyCode.E) || Input.GetMouseButtonUp(0)) {
             StopAllCoroutines();
             anim.SetBool("isShooting", false);
         }

@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 3706270502091218806}
   m_Layer: 0
   m_Name: Bullet
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 384260168390514700}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 0.71, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 129f36284e9deaa4f8982be8ed17d352, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -119,12 +119,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 384260168390514700}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: 1f49471b759aa104e875b680d183378e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   dmgSFX: {fileID: 8300000, guid: 4e51c0496b936cb4ca634ea5990716c8, type: 3}
   missSFX: {fileID: 8300000, guid: 1e846ebcc0a2b6046afcccb2691fb9bc, type: 3}
+  bulletBurstFX: {fileID: 8223040465835461189, guid: 2c51942b7088a4448a6575905f0e5304,
+    type: 3}
 --- !u!82 &3706270502091218806
 AudioSource:
   m_ObjectHideFlags: 0

@@ -15,6 +15,8 @@ public class HorokkoAI : MonoBehaviour {
     public AudioClip dieSFX;
     public AudioClip triggerSFX;
 
+    public GameObject explosionParticle;
+
     private AudioSource audioSource;
     private Animator animator;
     private bool born;
@@ -22,6 +24,7 @@ public class HorokkoAI : MonoBehaviour {
     private bool isWalkRoutineOn;
     private bool isAlive, startShooting;
     private bool isShootingRoutineOff = true;
+
 
     private void Start() {
 
@@ -54,7 +57,7 @@ public class HorokkoAI : MonoBehaviour {
         }
 
         if(alreadyBorn && isAlive) {
-            if(distance > 80f) {
+            if(distance > 70f) {
                 //Stop Walking and enter in Idle
                 StopAllCoroutines();
                 isWalkRoutineOn = false;
@@ -63,13 +66,12 @@ public class HorokkoAI : MonoBehaviour {
                 animator.SetBool("TriggeredPlayer", false);
 
             }
-            else if(distance < 60f && distance > 15f) {
+            else if(distance < 70f && distance > 15f) {
                 //Walk Towards the player
                 StopAllCoroutines();
                 //StopCoroutine(Shoot());
+
                 isShootingRoutineOff = true;
-                if(!isWalkRoutineOn)
-                    StartCoroutine(WalkRoutine());
 
                 animator.SetBool("PlayerIsNear", true);
                 animator.SetBool("TriggeredPlayer", false);
@@ -78,7 +80,6 @@ public class HorokkoAI : MonoBehaviour {
 
             else if(distance < 15f) {
                 //Start shooting
-                StopCoroutine(WalkRoutine());
                 isWalkRoutineOn = false;
                 startShooting = true;
 
@@ -112,22 +113,14 @@ public class HorokkoAI : MonoBehaviour {
         }
     }
 
-    IEnumerator WalkRoutine() {
-        isWalkRoutineOn = true;
-        while(true) {
-            audioSource.PlayOneShot(walkSFX, .7f);
-            yield return new WaitForSeconds(.2f);
-            audioSource.PlayOneShot(walkSFX, .7f);
-
-            yield return new WaitForSeconds(.7f);
-        }
-    }
-
     IEnumerator DieFeedback() {
-        yield return new WaitForSeconds(1.5f);
-        //add particle/vfx
+        var position = transform.position + new Vector3(0.0f, 5.0f, 0.0f);
+        GameObject particle = Instantiate(explosionParticle, position, transform.rotation);
+
+        yield return new WaitForSeconds(1.0f);
 
         Destroy(gameObject);
+        Destroy(particle);
         yield return null;
     }
 
